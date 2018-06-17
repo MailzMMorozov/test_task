@@ -1,38 +1,33 @@
-import {NO_ERRORS_SCHEMA} from '@angular/core';
-import {async, ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-/**
- * Load the implementations that should be tested.
- */
-import {AppState} from '../app.service';
-import {HomeComponent} from './home.component';
-import {Title} from './title';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Router } from '@angular/router';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HomeComponent } from './home.component';
+import { ROUTES } from '../app.routes';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NoContentComponent } from '../no-content';
 
+/*
+  Mandatory test for Component
+ */
 describe(`Home`, () => {
   let comp: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  let injector: TestBed;
-  let service: AppState;
-  let httpMock: HttpTestingController;
+  let router: Router;
 
   /**
    * async beforeEach.
    */
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent],
+      declarations: [HomeComponent, NoContentComponent],
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [HttpClientTestingModule],
-      providers: [AppState, Title]
+      imports: [RouterTestingModule.withRoutes(ROUTES)]
     })
-
     /**
      * Compile template and css.
      */
       .compileComponents();
-    injector = getTestBed();
-    service = injector.get(AppState);
-    httpMock = injector.get(HttpTestingController);
+    router = TestBed.get(Router);
   }));
 
   /**
@@ -48,20 +43,19 @@ describe(`Home`, () => {
     fixture.detectChanges();
   });
 
-  it('should have default data', () => {
-    expect(comp.localState).toEqual({value: ''});
-  });
+  describe('openUserPage', () => {
 
-  it('should have a title', () => {
-    expect(!!comp.title).toEqual(true);
-  });
+    beforeEach(() => {
+      spyOn(router, 'navigate');
+    });
 
-  it('should log ngOnInit', () => {
-    spyOn(console, 'log');
-    expect(console.log).not.toHaveBeenCalled();
+    it('should redirect to user', () => {
+      comp.openUserPage('user1');
+      expect(router.navigate)
+        .toHaveBeenCalledWith(['user', 'user1']);
 
-    comp.ngOnInit();
-    expect(console.log).toHaveBeenCalled();
+    });
+
   });
 
 });

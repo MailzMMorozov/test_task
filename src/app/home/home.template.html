@@ -1,0 +1,20 @@
+<div>
+  <div>
+    <h1>Fill the input</h1>
+
+    <form (ngSubmit)="openUserPage(user)"
+          autocomplete="off">
+
+      <input
+        [value]="user$ | async"
+        (input)="user = $event.target.value"
+        placeholder="GitHub username"
+        autofocus>
+
+      <button>Submit Value</button>
+    </form>
+
+  </div>
+
+</div>
+<router-outlet></router-outlet>

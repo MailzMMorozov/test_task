@@ -1,49 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-
-import {AppState} from '../app.service';
-import {Title} from './title';
-import {XLargeDirective} from './x-large';
+import { Component } from '@angular/core';
+import { Title } from './title';
+import { XLargeDirective } from './x-large';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  /**
-   * The selector is what angular internally uses
-   * for `document.querySelectorAll(selector)` in our index.html
-   * where, in this case, selector is the string 'home'.
-   */
-  selector: 'home',  // <home></home>
-  /**
-   * Our list of styles in our component. We may add more to compose many styles together.
-   */
-  styleUrls: ['./home.component.css'],
-  /**
-   * Every Angular template is first compiled by the browser before Angular runs it's compiler.
-   */
-  templateUrl: './home.component.html'
+  selector: 'home',
+  styleUrls: ['./home.style.css'],
+  templateUrl: './home.template.html'
 })
-export class HomeComponent implements OnInit {
-  /**
-   * Set our default values
-   */
-  public localState = {value: ''};
+export class HomeComponent {
 
-  /**
-   * TypeScript public modifiers
-   */
-  constructor(
-    public appState: AppState,
-  ) {
+  public user: string;
+
+  constructor(private router: Router, private route: ActivatedRoute) {
   }
 
-  public ngOnInit() {
-    console.log('hello `Home` component');
-    /**
-     * this.title.getData().subscribe(data => this.data = data);
-     */
-  }
-
-  public submitState(value: string) {
-    console.log('submitState', value);
-    this.appState.set('value', value);
-    this.localState.value = '';
+  public openUserPage(user: string) {
+    this.router.navigate(['user', user]);
   }
 }

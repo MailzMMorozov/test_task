@@ -1,0 +1,22 @@
+<div class="left">
+  <h1>User Details</h1>
+  <span>Name: {{name | async}}</span><br/>
+  <span>eMail: {{email | async}}</span><br/>
+  <span>Location: {{location | async}}</span><br/>
+  <span>Number of followers: {{followers | async}}</span>
+  <div *ngIf="!!(repos | async); else loading">
+    <span *ngIf="(repos | async)?.length === 0; else repoList">No pull requests</span>
+    <ng-template #repoList>
+      <h1>Repositories:</h1>
+      <div *ngFor="let repo of (repos | async)">
+        <a [routerLink]="['repo', repo.name]">{{repo.name}}</a><br/>
+      </div>
+    </ng-template>
+  </div>
+  <ng-template #loading>
+    <h1>Loading...</h1>
+  </ng-template>
+</div>
+<div class="right">
+  <router-outlet></router-outlet>
+</div>

@@ -1,9 +1,5 @@
-/**
- * Angular 2 decorators and services
- */
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {environment} from 'environments/environment';
-import {AppState} from './app.service';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { environment } from 'environments/environment';
 
 /**
  * App Component
@@ -16,42 +12,10 @@ import {AppState} from './app.service';
     './app.component.css'
   ],
   template: `
-    <nav>
-      <a [routerLink]=" ['./'] "
-         routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        Index
-      </a>
-      <a [routerLink]=" ['./home'] "
-         routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        Home
-      </a>
-      <a [routerLink]=" ['./detail'] "
-         routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        User
-      </a>
-    </nav>
-
-    <main>
       <router-outlet></router-outlet>
-    </main>
   `
 })
-export class AppComponent implements OnInit {
-  public name = 'Angular Starter';
-  public tipe = 'assets/img/tipe.png';
-  public twitter = 'https://twitter.com/gdi2290';
-  public url = 'https://tipe.io';
-  public showDevModule: boolean = environment.showDevModule;
-
-  constructor(
-    public appState: AppState
-  ) {
-  }
-
-  public ngOnInit() {
-    console.log('Initial App State', this.appState.state);
-  }
-
+export class AppComponent {
 }
 
 /**

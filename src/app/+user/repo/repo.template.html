@@ -1,0 +1,17 @@
+<h1>Repository Details:</h1>
+<span>Description: {{description$ | async}}</span><br/>
+<div *ngIf="fork$ | async; else notFork">
+  <span>Fork</span><br/>
+  <span>Source is <a [href]="(source$ | async).html_url">{{(source$ | async).full_name}}</a></span><br/>
+  <span>Parent is <a [href]="(parent$ | async).html_url">{{(parent$ | async).full_name}}</a></span>
+</div>
+<ng-template #notFork>
+  <div>Not a fork</div>
+</ng-template>
+<span>Stars count => {{starsCount$ | async}}</span><br/>
+<span>Forks count => {{forksCount$ | async}}</span><br/>
+<div>Open PRs count =>
+  <span *ngIf="(openPrsCount$ | async) !== null; else loading">{{openPrsCount$ | async}}</span>
+  <ng-template #loading>loading...</ng-template>
+</div>
+<span>Open Issues count => {{openIssuesCount$ | async}}</span><br/>
