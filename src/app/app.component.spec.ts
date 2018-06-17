@@ -1,16 +1,10 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import {
-  inject,
-  async,
-  TestBed,
-  ComponentFixture
-} from '@angular/core/testing';
-
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 /**
  * Load the implementations that should be tested
  */
-import { AppComponent } from './app.component';
-import { AppState } from './app.service';
+import {AppComponent} from './app.component';
+import {AppState} from './app.service';
 
 describe(`App`, () => {
   let comp: AppComponent;
@@ -21,14 +15,14 @@ describe(`App`, () => {
    */
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppComponent ],
+      declarations: [AppComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [AppState]
     })
     /**
      * Compile template and css
      */
-    .compileComponents();
+      .compileComponents();
   }));
 
   /**
@@ -36,7 +30,7 @@ describe(`App`, () => {
    */
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
-    comp    = fixture.componentInstance;
+    comp = fixture.componentInstance;
 
     /**
      * Trigger initial data binding

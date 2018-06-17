@@ -16,7 +16,7 @@ console.log('`ChildDetail` component loaded asynchronously');
     <h1>Hello from Child Detail</h1>
   `,
 })
-export class ChildDetailComponent implements OnInit {
+export class RepoComponent implements OnInit {
 
   public ngOnInit() {
     console.log('hello `ChildDetail` component');

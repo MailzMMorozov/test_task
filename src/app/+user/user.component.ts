@@ -22,7 +22,7 @@ console.log('`Detail` component loaded asynchronously');
     <router-outlet></router-outlet>
   `,
 })
-export class DetailComponent implements OnInit {
+export class UserComponent implements OnInit {
 
   public ngOnInit() {
     console.log('hello `Detail` component');
