@@ -1,6 +1,8 @@
 Boilerplate taken from https://github.com/gdi2290/angular-starter.git
+
 To start project => npm start
-To run unit tests => npm tests
+
+To run unit tests => npm test
 
 Comments:
 1) Taken from boilerplate, which leads to bunch of unused code
